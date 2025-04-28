@@ -1,0 +1,29 @@
+#Neustart als Systemdienst von Senaite Lims
+# sudo nano /etc/systemd/system/senaite.service
+
+[Unit]
+Description=SENAITE LIMS
+After=network.target
+
+[Service]
+Type=forking
+User=senaite
+Group=senaite
+WorkingDirectory=/home/senaite/senaite
+ExecStart=/home/senaite/senaite/bin/instance start
+ExecStop=/home/senaite/senaite/bin/instance stop
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+# Deamon Neuladen
+# sudo systemctl daemon-reload
+# Service aktivieren
+# sudo systemctl enable senaite.service
+# Service sofort starten
+# sudo systemctl start senaite.service
+# Status prüfen
+# sudo systemctl status senaite.service
+
+
